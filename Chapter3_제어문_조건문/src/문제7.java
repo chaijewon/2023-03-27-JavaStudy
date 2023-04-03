@@ -35,6 +35,7 @@ public class 문제7 {
 			ch='C';
 		if(temp>=60 && temp<70)
 			ch='D';
+		// else
 		if(temp<60)
 			ch='F';
 		System.out.println("학점:"+ch);
