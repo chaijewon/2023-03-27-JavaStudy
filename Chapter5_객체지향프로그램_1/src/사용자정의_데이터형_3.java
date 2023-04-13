@@ -11,8 +11,17 @@ class Category
 	String title;
 	String subject;
 }
+/*
+ *   멤버변수 (인스턴스변수) 
+ *   ------------------
+ *   1. 기본형 
+ *   2. 배열 
+ *   3. 클래스 
+ */
 class FoodHouse
 {
+	int no;// 중복이 안된 숫자 => primary key => 상세보기 
+	int cno;// 참조키 => foreign key
 	String[] poster=new String[5];
 	String name;
 	double score;
@@ -24,13 +33,12 @@ class FoodHouse
 	String stime,etime;
 	String hol;
 	String menu;
-	
 }
 public class 사용자정의_데이터형_3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+        
 	}
 
 }
