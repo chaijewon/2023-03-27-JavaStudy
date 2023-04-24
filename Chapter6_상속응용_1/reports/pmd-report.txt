@@ -1,0 +1,53 @@
+src/com/sist/main3/GenieMusicSystem.java:3:	UnnecessaryImport:	UnnecessaryImport: Unused import 'java.io.IOException'
+src/com/sist/main3/GenieMusicSystem.java:9:	AtLeastOneConstructor:	AtLeastOneConstructor: Each class should declare at least one constructor
+src/com/sist/main3/GenieMusicSystem.java:9:	CommentRequired:	CommentRequired: Class comments are required
+src/com/sist/main3/GenieMusicSystem.java:10:	CommentRequired:	CommentRequired: Field comments are required
+src/com/sist/main3/GenieMusicSystem.java:11:	CommentRequired:	CommentRequired: Field comments are required
+src/com/sist/main3/GenieMusicSystem.java:14:	CommentSize:	CommentSize: Comment is too large: Too many lines
+src/com/sist/main3/GenieMusicSystem.java:40:	NonStaticInitializer:	NonStaticInitializer: Non-static initializers are confusing
+src/com/sist/main3/GenieMusicSystem.java:43:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'doc' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:55:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'title' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:55:	LooseCoupling:	LooseCoupling: Avoid using implementation types like 'Elements'; use the interface instead
+src/com/sist/main3/GenieMusicSystem.java:58:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'singer' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:58:	LooseCoupling:	LooseCoupling: Avoid using implementation types like 'Elements'; use the interface instead
+src/com/sist/main3/GenieMusicSystem.java:61:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'album' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:61:	LooseCoupling:	LooseCoupling: Avoid using implementation types like 'Elements'; use the interface instead
+src/com/sist/main3/GenieMusicSystem.java:63:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'etc' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:63:	LooseCoupling:	LooseCoupling: Avoid using implementation types like 'Elements'; use the interface instead
+src/com/sist/main3/GenieMusicSystem.java:64:	SystemPrintln:	SystemPrintln: Usage of System.out/err
+src/com/sist/main3/GenieMusicSystem.java:72:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 's' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:72:	ShortVariable:	ShortVariable: Avoid variables with short names like s
+src/com/sist/main3/GenieMusicSystem.java:73:	UnusedAssignment:	UnusedAssignment: The initializer for variable 'state' is never used (overwritten on lines 77 and 83)
+src/com/sist/main3/GenieMusicSystem.java:74:	UnusedAssignment:	UnusedAssignment: The initializer for variable 'value' is never used (overwritten on lines 78 and 84)
+src/com/sist/main3/GenieMusicSystem.java:75:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/com/sist/main3/GenieMusicSystem.java:106:	AvoidCatchingGenericException:	AvoidCatchingGenericException: Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/com/sist/main3/GenieMusicSystem.java:106:	EmptyCatchBlock:	EmptyCatchBlock: Avoid empty catch blocks
+src/com/sist/main3/GenieMusicSystem.java:110:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/com/sist/main3/GenieMusicSystem.java:112:	MethodReturnsInternalArray:	MethodReturnsInternalArray: Returning 'musics' may expose an internal array.
+src/com/sist/main3/GenieMusicSystem.java:115:	CognitiveComplexity:	CognitiveComplexity: The method 'musicFind(String, int)' has a cognitive complexity of 16, current threshold is 15
+src/com/sist/main3/GenieMusicSystem.java:115:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/com/sist/main3/GenieMusicSystem.java:115:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'fd' is not assigned and could be declared final
+src/com/sist/main3/GenieMusicSystem.java:115:	MethodArgumentCouldBeFinal:	MethodArgumentCouldBeFinal: Parameter 'type' is not assigned and could be declared final
+src/com/sist/main3/GenieMusicSystem.java:115:	ShortVariable:	ShortVariable: Avoid variables with short names like fd
+src/com/sist/main3/GenieMusicSystem.java:117:	ShortVariable:	ShortVariable: Avoid variables with short names like i
+src/com/sist/main3/GenieMusicSystem.java:118:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'm' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:120:	UnusedAssignment:	UnusedAssignment: The initializer for variable 'bCheck' is never used (overwritten on lines 123 and 129)
+src/com/sist/main3/GenieMusicSystem.java:121:	AvoidLiteralsInIfCondition:	AvoidLiteralsInIfCondition: Avoid using literals in if statements
+src/com/sist/main3/GenieMusicSystem.java:124:	SimplifyBooleanExpressions:	SimplifyBooleanExpressions: Avoid unnecessary comparisons in boolean expressions
+src/com/sist/main3/GenieMusicSystem.java:125:	ControlStatementBraces:	ControlStatementBraces: This statement should have braces
+src/com/sist/main3/GenieMusicSystem.java:130:	SimplifyBooleanExpressions:	SimplifyBooleanExpressions: Avoid unnecessary comparisons in boolean expressions
+src/com/sist/main3/GenieMusicSystem.java:131:	ControlStatementBraces:	ControlStatementBraces: This statement should have braces
+src/com/sist/main3/GenieMusicSystem.java:135:	SystemPrintln:	SystemPrintln: Usage of System.out/err
+src/com/sist/main3/GenieMusicSystem.java:136:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'mm' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:136:	ShortVariable:	ShortVariable: Avoid variables with short names like mm
+src/com/sist/main3/GenieMusicSystem.java:143:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'm' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:145:	UnusedAssignment:	UnusedAssignment: The initializer for variable 'bCheck' is never used (overwritten on lines 148 and 153)
+src/com/sist/main3/GenieMusicSystem.java:146:	AvoidLiteralsInIfCondition:	AvoidLiteralsInIfCondition: Avoid using literals in if statements
+src/com/sist/main3/GenieMusicSystem.java:157:	SimplifyBooleanExpressions:	SimplifyBooleanExpressions: Avoid unnecessary comparisons in boolean expressions
+src/com/sist/main3/GenieMusicSystem.java:172:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/com/sist/main3/GenieMusicSystem.java:173:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'g' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:173:	ShortVariable:	ShortVariable: Avoid variables with short names like g
+src/com/sist/main3/GenieMusicSystem.java:174:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'aa' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:174:	ShortVariable:	ShortVariable: Avoid variables with short names like aa
+src/com/sist/main3/GenieMusicSystem.java:175:	LocalVariableCouldBeFinal:	LocalVariableCouldBeFinal: Local variable 'a' could be declared final
+src/com/sist/main3/GenieMusicSystem.java:177:	SystemPrintln:	SystemPrintln: Usage of System.out/err
