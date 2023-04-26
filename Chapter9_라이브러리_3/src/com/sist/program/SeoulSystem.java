@@ -44,21 +44,33 @@ public class SeoulSystem {
 	   SeoulLocationVO[] data=
 			   new SeoulLocationVO[10];
 	   int j=0;// 10개씩 나눠주는 변수 
-	   int start=(page*10)-10; // 시작점 (for)
+	   int rowSize=10;
+	   int start=(page*rowSize)-rowSize; // 시작점 (for)
+	   // (page-1)*rowSize
 	   /*
 	    *    1page => 0~9
 	    *    2page => 10~19
 	    *    3page => 20~29
+	    *    ==.start=30
 	    */
-	   int k=0;
-	   for(int i=0;i<datas.length;i++)
+	   //int k=0;
+	   //int j=0;
+	   int bound=start+rowSize;
+	   if(page==seoulTotalPage())
 	   {
-		   if(j<10 && i>=start)
-		   {
-			   data[k]=datas[i];
-			   k++;
+		   bound=start+(datas.length%10);
+	   }
+	   for(int i=start;i<bound;i++)
+	   {
+		   // 1page => 0~9
+		   // 2page => 10~19
+		   // 3page => 20 
+		   //if(j<rowSize && i>=start)
+		   //{
+			   data[j]=datas[i];
+			   //k++;
 			   j++;
-		   }
+		   //}
 	   }
 	   
 	   return data;
