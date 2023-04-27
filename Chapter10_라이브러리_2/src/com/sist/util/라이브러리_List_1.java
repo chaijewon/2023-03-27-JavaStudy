@@ -120,11 +120,111 @@ package com.sist.util;
  *        => 데이터관리 / 화면출력 
  *   
  */
+import java.util.*;
+//ArrayList => 사용빈도가 가장 많다 
+//=> 배열과 유사 => 인덱스번호를 사용한다 => 자동으로 지정 
+//=> 순차적이다 (인덱스가 항상 0~~)
+//=> 크기를 지정하지 않는다 (가변형)
+//=> 데이터베이스 연동 
+/*
+ *   생성 
+ *   ---
+ *   List list=new ArrayList(); => 기본 생성자 => 메모리가 10개 
+ *   ArrayList list=new ArrayList();
+ *   ==> 10개를 넘으면 자동 10개를 추가 ...
+ *   
+ *   ArrayList list=new ArrayList(10)
+ */
 public class 라이브러리_List_1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+        // 생성 
+		ArrayList list=new ArrayList();// 저장 => 기본 default Object
+		// list에는 모든 데이터형을 첨부할 수 있다 (클래스 , 기본형...)
+		// 가급적이면 같은 데이터형을 첨부하는 것이 관리하기 편리하다 
+		// list라는 공간 데이터 추가 
+		// 순서가 존재 ==> for
+		// 이름 관리 
+		list.add("홍길동"); // index=0  list[0]=""
+		list.add("박문수"); // index=1
+		list.add("심청이"); // index=4
+		list.add("춘향이"); // index=5
+		list.add("이순신"); // index=6
+		list.add(2, "강감찬"); // index=2
+		list.add(3,"을지문덕"); // index=3
+		list.add("박문수");// index=7
+		// 자동으로 인덱스번호가 변경이 된다 
+		// 출력 
+		// 데이터 추가시 => add()를 이용한다 
+		// add=>오버로딩 
+		// add(Object o) , add(int index,Object o)
+		// 맨마지막에 추가     => 속도가 늦다 
+		// 저장된 갯수 => size() ==> 배열의 length
+		for(int i=0;i<list.size();i++)
+		{
+			System.out.println(i+"."+list.get(i));
+			// .toString() => 생략이 가능
+		}
+		//
+		System.out.println("======== 삭제 ========");
+		/*
+		 *  0.홍길동
+			1.박문수
+			2.강감찬
+			3.을지문덕
+			4.심청이
+			5.춘향이
+			6.이순신
+			7.박문수
+		 */
+		//list.remove(index) list.remove("홍길동")
+		// 실제값을 삭제 => 중복이 있는 경우 전부 삭제 
+		list.remove(3);
+		/*
+		 *     중간에 생략하는 번호가 없이 순차적으로 자동 설정이 된다 
+		 *      0.홍길동
+				1.박문수
+				2.강감찬
+				3.심청이
+				4.춘향이
+				5.이순신
+				6.박문수
+		  ==> 삭제시에는 이름으로 삭제 요청 => 가장 처음에 있는 이름만 삭제
+		 */
+		for(int i=0;i<list.size();i++)
+		{
+			System.out.println(i+"."+list.get(i));
+		}
+		System.out.println("======== 수정 =========");
+		// 수정 => set => set(index번호,변경할 데이터)
+		list.set(0, "홍길수");
+		/*
+		 *  0.홍길수 list.set(0, "홍길수"); 홍길동 => 홍길수 
+			1.박문수
+			2.강감찬
+			3.심청이
+			4.춘향이
+			5.이순신
+			6.박문수
+		 */
+		for(int i=0;i<list.size();i++)
+		{
+			System.out.println(i+"."+list.get(i));
+		}
+		System.out.println("====== 저장된 갯수 확인 ======");
+		System.out.println("인원수:"+list.size());
+		System.out.println("====== 전체 삭제 ======");
+		list.clear(); // 메모리 공간 삭제 
+		System.out.println("인원수:"+list.size());
+		/*
+		 *   ***add(Object o)
+		 *   set(int index,Object o)
+		 *   remove(int index)
+		 *   ***Object get(int index)	
+		 *   ***int size() 	
+		 *   ***clear() 
+		 */
 	}
 
 }
