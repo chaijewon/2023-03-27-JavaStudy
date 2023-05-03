@@ -64,6 +64,7 @@ public class DataCollectionManager {
 		        private int cno;//구분자 
 		        private String key; // 동영상 
         	 */
+        	
         	int k=1; // 고유번호 
         	for(int i=0;i<urls.length;i++)
         	{
