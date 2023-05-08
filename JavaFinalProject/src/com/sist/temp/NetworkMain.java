@@ -6,6 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import com.sist.common.ImageChange;
+import com.sist.manager.GenieMusicVO;
+import com.sist.manager.MusicSystem;
+import java.util.*;
+import java.util.List;
 public class NetworkMain extends JFrame implements ActionListener{
     MenuPanel mp;
     ControlPanel cp;
@@ -13,6 +17,10 @@ public class NetworkMain extends JFrame implements ActionListener{
     JButton b1,b2,b3,b4,b5;
     JLabel logo;
     Login login=new Login();
+    // 페이지 지정 
+    int curpage=1;
+    int totalpage=0;
+    MusicSystem ms=new MusicSystem();
     public NetworkMain()
     {
     	logo=new JLabel();
@@ -27,7 +35,7 @@ public class NetworkMain extends JFrame implements ActionListener{
     	setLayout(null);//Layout없이 직접 배치
     	logo.setBounds(10, 15, 200, 130);
     	mp.setBounds(10, 150, 200, 300);
-    	cp.setBounds(220,15, 750, 730);
+    	cp.setBounds(220,15, 750, 780);
     	tp.setBounds(980, 15, 250, 730);
     	
     	b1=new JButton("홈");
@@ -50,7 +58,7 @@ public class NetworkMain extends JFrame implements ActionListener{
     	
     	// 윈도우 크기
     	setSize(1200, 800);
-    	setVisible(true);
+    	//setVisible(true);
     	// 종료
     	setDefaultCloseOperation(EXIT_ON_CLOSE);
     	setTitle("네트워크 뮤직 프로그램");
@@ -65,18 +73,25 @@ public class NetworkMain extends JFrame implements ActionListener{
     	login.b2.addActionListener(this);
     	// 채팅 
     	cp.cp.tf.addActionListener(this);
-    	//Home
-    	cp.hp.b1.addActionListener(this);
-    	cp.hp.b2.addActionListener(this);
+    	// HomePage
+    	List<GenieMusicVO> list=ms.musicListData(curpage);
+		cp.hp.cardInit(list);
+		cp.hp.cardPrint(list);
+		totalpage=ms.musicTotalPage();
+		// 여러번 => 동작을 여러번 수행 
+		cp.hp.b1.addActionListener(this);// 이전
+    	cp.hp.b2.addActionListener(this);// 다음
+    	cp.hp.pageLa.setText(curpage+" page /"
+                + totalpage+" pages");
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try
 		{
-			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+			//UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
-			//UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+			UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");X
 			// BernsteinLookAndFeel  
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
@@ -86,12 +101,23 @@ public class NetworkMain extends JFrame implements ActionListener{
         new NetworkMain();
 	}
 	// 버튼 처리 
-	
+	public void musicDisplay()
+	{
+		
+		List<GenieMusicVO> list=ms.musicListData(curpage);
+		cp.hp.cardInit(list);
+		cp.hp.cardPrint(list);
+		totalpage=ms.musicTotalPage();
+		cp.hp.pageLa.setText(curpage+" page /"
+		                  + totalpage+" pages");
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==b1)
 		{
+			curpage=1;
+			musicDisplay();
 			cp.card.show(cp, "home");
 		}
 		else if(e.getSource()==b2)
@@ -133,20 +159,21 @@ public class NetworkMain extends JFrame implements ActionListener{
 		}
 		else if(e.getSource()==cp.hp.b1)
 		{
-			if(cp.hp.curpage>1)
+			if(curpage>1)
 			{
-				cp.hp.curpage--;
-				//cp.hp.musicData();
+				curpage--;
+				musicDisplay();
 			}
 		}
 		else if(e.getSource()==cp.hp.b2)
 		{
-			if(cp.hp.curpage<cp.hp.totalpage)
+			if(curpage<totalpage)
 			{
-				cp.hp.curpage++;
-				//cp.hp.musicData();
+				curpage++;
+				musicDisplay();
 			}
 		}
+		
 	}
 
 }

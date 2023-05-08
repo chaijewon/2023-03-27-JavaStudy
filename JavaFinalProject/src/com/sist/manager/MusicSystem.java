@@ -28,26 +28,31 @@ public class MusicSystem {
 			}catch(Exception e) {}
 		}
 	}
-	public int musicTotalPage()
-	{
-		return (int)(Math.ceil(list.size()/10.0));
-	}
+	// 뮤직데이터 20개씩 나눠서 전송 
 	public List<GenieMusicVO> musicListData(int page)
 	{
-		List<GenieMusicVO> mList=
+		List<GenieMusicVO> gList=
 				new ArrayList<GenieMusicVO>();
-		int rowSize=10;
+		int j=0; // 20개씩 나눠주는 변수 
+		int rowSize=20;
 		int start=(page-1)*rowSize;
-		int j=0;
+		/*
+		 *   1page => 0~19
+		 *   2page => 20~39
+		 */
 		for(int i=0;i<list.size();i++)
 		{
-			if(j<10 && i>=start)
+			if(j<rowSize && i>=start)
 			{
-				mList.add(list.get(i));
+				gList.add(list.get(i));
 				j++;
 			}
 		}
-		return mList;
+		return gList;
+	}
+	public int musicTotalPage()
+	{
+		return (int)(Math.ceil(list.size()/20.0));
 	}
 	public List<GenieMusicVO> musicCategoryData(int cno)
 	{
