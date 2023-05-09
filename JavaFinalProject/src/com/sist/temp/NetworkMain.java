@@ -333,6 +333,7 @@ implements ActionListener,Runnable,MouseListener{
 			{
 				String msg=in.readLine();
 				// 서버에서 보낸값 
+				System.out.println("Server 전송값:"+msg);
 				StringTokenizer st=
 						new StringTokenizer(msg,"|");
 				int protocol=Integer.parseInt(st.nextToken());
