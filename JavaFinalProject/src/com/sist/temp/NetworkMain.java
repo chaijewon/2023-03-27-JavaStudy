@@ -75,7 +75,7 @@ implements ActionListener,Runnable{
     	
     	
     	// 윈도우 크기
-    	setSize(1200, 800);
+    	setSize(1300, 800);
     	//setVisible(true);
     	// 종료
     	setDefaultCloseOperation(EXIT_ON_CLOSE);

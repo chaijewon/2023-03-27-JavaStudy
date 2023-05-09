@@ -9,8 +9,10 @@ import javax.swing.text.Document;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+
+import com.sist.inter.ChatInterface;
 // 750 730
-public class ChatPanel extends JPanel {
+public class ChatPanel extends JPanel implements ChatInterface{
    JTextPane pane;
    JTextField tf;
    JButton b1,b2;
