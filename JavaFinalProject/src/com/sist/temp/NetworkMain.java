@@ -2,6 +2,8 @@ package com.sist.temp;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
@@ -21,7 +23,7 @@ import java.net.*;
  *      ----------------------- 쓰레드 
  */
 public class NetworkMain extends JFrame 
-implements ActionListener,Runnable{
+implements ActionListener,Runnable,MouseListener{
     MenuPanel mp;
     ControlPanel cp;
     TopPanel tp;
@@ -39,6 +41,13 @@ implements ActionListener,Runnable{
     BufferedReader in;
     // 서버로 값을 전송 
     OutputStream out;
+    // ID저장 
+    String myId;
+    // 테이블 선택 인덱스번호 
+    int selectRow=-1;
+    // 쪽지보내기 
+    SendMessage sm=new SendMessage();
+    RecvMessage rm=new RecvMessage();
     public NetworkMain()
     {
     	logo=new JLabel();
@@ -101,6 +110,16 @@ implements ActionListener,Runnable{
     	cp.hp.b2.addActionListener(this);// 다음
     	cp.hp.pageLa.setText(curpage+" page /"
                 + totalpage+" pages");
+    	
+    	cp.cp.b1.addActionListener(this);//쪽지보내기
+    	cp.cp.b2.addActionListener(this);//정보 보기
+    	cp.cp.table.addMouseListener(this);
+    	
+    	// 쪽지보내기
+    	sm.b1.addActionListener(this);
+    	sm.b2.addActionListener(this);
+    	rm.b1.addActionListener(this);
+    	rm.b2.addActionListener(this);
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -240,6 +259,66 @@ implements ActionListener,Runnable{
 				musicDisplay();
 			}
 		}
+		else if(e.getSource()==cp.cp.b2)
+		{
+			// 정보 보기 
+			if(selectRow==-1)
+			{
+				JOptionPane.showMessageDialog(this, "정보볼 대상을 선택하세요");
+				return;
+			}
+			// 선택된 경우
+			String youId=cp.cp.table.getValueAt(selectRow, 0).toString();
+			try
+			{
+				// 선택된 아이디의 정보를 보여달라 (서버에 요청)
+				out.write((Function.INFO+"|"+youId+"\n").getBytes());
+				// out.write=> 서버요청 ==> \n포함되야 된다 
+				// 처리 => 서버 => 결과값을 받아서 클러이언트에서 출력 
+			}catch(Exception ex){}
+		}
+		else if(e.getSource()==cp.cp.b1)
+		{
+			// 쪽지보내기
+			sm.ta.setText("");
+			String youId=cp.cp.table.getValueAt(selectRow, 0).toString();
+			sm.tf.setText(youId);
+			sm.setVisible(true);
+		}
+		// 쪽지보내기 관련
+		else if(e.getSource()==sm.b2)
+		{
+			sm.setVisible(false);
+		}
+		else if(e.getSource()==rm.b2)
+		{
+			rm.setVisible(false);
+		}
+		else if(e.getSource()==sm.b1)
+		{
+			String youId=sm.tf.getText();
+			String msg=sm.ta.getText();
+			if(msg.length()<1)
+			{
+				sm.ta.requestFocus();
+				return;
+			}
+			try
+			{
+				out.write((Function.MSGSEND+"|"
+						+youId+"|"+msg+"\n").getBytes());
+				// youId를 찾아서 msg를 보내주는 기능 수행 
+			}catch(Exception ex){}
+			// 창을 감춘다 
+			sm.setVisible(false);
+		}
+		else if(e.getSource()==rm.b1)
+		{
+			sm.tf.setText(rm.tf.getText());
+			sm.ta.setText("");
+			sm.setVisible(true);
+			rm.setVisible(false);
+		}
 		
 	}
 	// 서버에서 결과값을 받아서 출력 => 쓰레드 (자동화) 
@@ -277,6 +356,7 @@ implements ActionListener,Runnable{
 				  case Function.MYLOG:
 				  {
 					  setTitle(st.nextToken());
+					  myId=st.nextToken();
 					  login.setVisible(false);
 					  setVisible(true);
 				  }
@@ -288,9 +368,75 @@ implements ActionListener,Runnable{
 					  //           채팅문자열          색상 
 				  }
 				  break;
+				  /*
+				   *  Function.INFO+"|"
+				    				+user.id+"|"
+				    				+user.name+"|"
+				    				+user.sex
+				   */
+				  case Function.INFO:
+				  {
+					  String data="아이디:"+st.nextToken()+"\n"
+							     +"이름:"+st.nextToken()+"\n"
+							     +"성별:"+st.nextToken();
+					  JOptionPane.showMessageDialog(this, data);
+				  }
+				  break;
+				  case Function.MSGSEND:
+				  {
+					  String id=st.nextToken();
+					  String strMsg=st.nextToken();
+					  rm.tf.setText(id);
+					  rm.ta.setText(strMsg);
+					  rm.setVisible(true);
+				  }
+				  break;
 				}
 			}
 		}catch(Exception ex){}
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==cp.cp.table)
+		{
+			//if(e.getClickCount()==2)// 더블 클릭
+			//{
+			    selectRow=cp.cp.table.getSelectedRow();
+				String id=cp.cp.table.getValueAt(selectRow, 0).toString();
+				//JOptionPane.showMessageDialog(this, "선택된 ID:"+id);
+				if(id.equals(myId))// 본인이면 
+				{
+					cp.cp.b1.setEnabled(false);
+					cp.cp.b2.setEnabled(false);
+				}
+				else //본인이 아닌 경우 
+				{
+					cp.cp.b1.setEnabled(true);
+					cp.cp.b2.setEnabled(true);
+				}
+			//}
+		}
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
