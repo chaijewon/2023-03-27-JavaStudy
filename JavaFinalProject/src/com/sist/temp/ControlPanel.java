@@ -12,6 +12,8 @@ public class ControlPanel extends JPanel{
 	BoardListPanel bp;
 	BoardInsertPanel ip;
 	BoardDetailPanel bdp;
+	BoardUpdatePanel bup;
+	BoardDeletePanel bdelp;
 	CardLayout card=new CardLayout();
 	// 화면 이동 
     public ControlPanel()
@@ -21,6 +23,8 @@ public class ControlPanel extends JPanel{
     	bp=new BoardListPanel(this);
     	ip=new BoardInsertPanel(this);
     	bdp=new BoardDetailPanel(this);
+    	bup=new BoardUpdatePanel(this);
+    	bdelp=new BoardDeletePanel(this);
     	setLayout(card);
     	add("home",hp);
     	// @RequestMapping("main/maim.do")
@@ -31,5 +35,7 @@ public class ControlPanel extends JPanel{
     	add("board",bp);
     	add("insert",ip);
     	add("bdp",bdp);
+    	add("bup",bup);
+    	add("delete",bdelp);
     }
 }
