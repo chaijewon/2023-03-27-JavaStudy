@@ -140,6 +140,16 @@ public class BoardManager implements BoardInterface{
 		vo.setNo(no);
 		vo.setRegdate(new Date());
 		list.add(vo);
+		try
+		{
+			FileOutputStream fos=
+					new FileOutputStream("c:\\java_datas\\board.txt");
+			ObjectOutputStream oos=
+					new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			fos.close();
+			oos.close();
+		}catch(Exception ex){}
 	}
 	// 4. 수정할 데이터 읽기
 	@Override
