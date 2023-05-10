@@ -84,7 +84,7 @@ implements ActionListener,Runnable,MouseListener{
     MenuPanel mp;
     ControlPanel cp;
     TopPanel tp;
-    JButton b1,b2,b3,b4,b5;
+    JButton b1,b2,b3,b4,b5,b6;
     JLabel logo;
     Login login=new Login();
     // 페이지 지정 
@@ -127,12 +127,14 @@ implements ActionListener,Runnable,MouseListener{
     	b3=new JButton("채팅");
     	b4=new JButton("뉴스검색");
     	b5=new JButton("커뮤니티");//CURD
-    	mp.setLayout(new GridLayout(5,1,10,10));
+    	b6=new JButton("나가기");
+    	mp.setLayout(new GridLayout(6,1,10,10));
     	mp.add(b1);
     	mp.add(b2);
     	mp.add(b3);
     	mp.add(b4);
     	mp.add(b5);
+    	mp.add(b6);
     	// 추가
     	add(mp);
     	add(cp);
@@ -144,7 +146,7 @@ implements ActionListener,Runnable,MouseListener{
     	setSize(1300, 800);
     	//setVisible(true);
     	// 종료
-    	setDefaultCloseOperation(EXIT_ON_CLOSE);
+    	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     	setTitle("네트워크 뮤직 프로그램");
     	// 이벤트 등록 
     	b1.addActionListener(this);
@@ -152,6 +154,7 @@ implements ActionListener,Runnable,MouseListener{
     	b3.addActionListener(this);
     	b4.addActionListener(this);
     	b5.addActionListener(this);
+    	b6.addActionListener(this);
     	// 로그인
     	login.b1.addActionListener(this);
     	login.b2.addActionListener(this);
@@ -182,10 +185,10 @@ implements ActionListener,Runnable,MouseListener{
 		// TODO Auto-generated method stub
 		try
 		{
-			//UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
-			UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+			//UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");X
 			// BernsteinLookAndFeel  
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
@@ -376,6 +379,13 @@ implements ActionListener,Runnable,MouseListener{
 			sm.setVisible(true);
 			rm.setVisible(false);
 		}
+		else if(e.getSource()==b6)//나가기
+		{
+			try
+			{
+				out.write((Function.EXIT+"|"+myId+"\n").getBytes());
+			}catch(Exception ex){}
+		}
 		
 	}
 	// 서버에서 결과값을 받아서 출력 => 쓰레드 (자동화) 
@@ -449,6 +459,27 @@ implements ActionListener,Runnable,MouseListener{
 					  rm.setVisible(true);
 				  }
 				  break;
+				  case Function.MYEXIT:
+				  {
+					  dispose();// 윈도우 메모리 해제 
+					  System.exit(0);// 프로그램 종료
+				  }
+				  break;
+				  case Function.EXIT:
+				  {
+					  String mid=st.nextToken();
+					  for(int i=0;i<cp.cp.model.getRowCount();i++)
+					  {
+						  String uid=cp.cp.table.getValueAt(i, 0).toString();
+						  if(mid.equals(uid))
+						  {
+							  cp.cp.model.removeRow(i);
+							  break;
+						  }
+					  }
+				  }
+				  break;
+				  
 				}
 			}
 		}catch(Exception ex){}
