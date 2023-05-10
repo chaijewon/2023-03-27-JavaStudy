@@ -22,6 +22,63 @@ import java.net.*;
  *   2) 서버에서 전송되는 데이터를 출력 
  *      ----------------------- 쓰레드 
  */
+/*
+ *   웹에서 필요한 기술 
+ *   => 데이터베이스 (오라클 => MySQL)
+ *      ------------------------- MyBatis / JPA
+ *   => 데이터베이스 제어 => 자바 
+ *      자바 
+ *       클래스 개념 / 인터페이스 / 예외처리 / 라이브러리 
+ *                  -------- 요구사항 분석 (기능)
+ *       -------- 변수 / 메소드 / 생성자 
+ *       java.lang 
+ *          Object / String / StringBuffer / Math / Wrapper
+ *       java.util
+ *          StringTokenizer / Date,Calendar 
+ *          Collection => ArrayList,HashMap,HashSet
+ *       java.net
+ *          URL , URLEncoder 
+ *       java.io : 웹 => 업로드,다운로드 (File)
+ *                 => Buffered~
+ *                 FileInputStream/FileOutputStream
+ *                 FileReader / FileWriter
+ *                 BufferedReader / File
+ *          
+ *       java.text : SimpleDateFormat
+ *      --------------------------------------------
+ *      2차 자바 (Web관련)
+ *       java.sql , javax.sql , javax.nameing
+ *       javax.servlet.*
+ *       
+ *       브라우저  ====== 자바  ====== 오라클 
+ *                                 ----- 데이터를 저장
+ *       윈도우   ====== 자바  ====== 파일 
+ *                   ------ 데이터읽기 / 데이터전송 
+ *       => 1) 오라클 제어 
+ *             SELECT / UPDATE / DELETE / INSERT => DML
+ *             --------------------------------- 데이터 조작언어
+ *             CREATE / ALTER / DROP / TRUNCATE / RENAME => DDL
+ *             ----------------------------- 데이터 저장/생성
+ *             GRANT / REVOKE 
+ *             --------------- DCL(Admin)
+ *             COMMIT / ROLLBACK
+ *             ----------------- TCL(일괄처리)
+ *          2) 기타 : VIEW/SEQUENCE/PS-SQL(FUNCTION,PROCEDUR/TRIGGER)
+ *          3) 데이터베이스 모델링 (정규화 , 제약조건)
+ *        => 브라우저에 데이터 출력 : HTML / CSS / JavaScript
+ *        => 자바스크립트 라이브러리 : JQuery / Ajax 
+ *                              -------------- 교재 (동영상)
+ *       ----------------------------- 1차 프로젝트 
+ *       Spring (Back-End) / VueJS (Front-End) 
+ *       ----------------------------- 2차 프로젝트 (조별)
+ *       Spring-Boot / My-SQL / ReactJS / JPA 
+ *       ----------------------------- 3차 프로젝트 (개인)
+ *       AWS => 호스팅 
+ *       ----------------------------- 이력서 첨부 (입사)
+ *       
+ *                              
+ *       
+ */
 public class NetworkMain extends JFrame 
 implements ActionListener,Runnable,MouseListener{
     MenuPanel mp;
@@ -69,7 +126,7 @@ implements ActionListener,Runnable,MouseListener{
     	b2=new JButton("뮤직검색");
     	b3=new JButton("채팅");
     	b4=new JButton("뉴스검색");
-    	b5=new JButton("뮤직추천");
+    	b5=new JButton("커뮤니티");//CURD
     	mp.setLayout(new GridLayout(5,1,10,10));
     	mp.add(b1);
     	mp.add(b2);
@@ -171,7 +228,7 @@ implements ActionListener,Runnable,MouseListener{
 		}
 		else if(e.getSource()==b5)
 		{
-			cp.card.show(cp, "recomm");
+			cp.card.show(cp, "board");
 		}
 		else if(e.getSource()==login.b1)
 		{
