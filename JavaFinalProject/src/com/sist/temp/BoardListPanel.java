@@ -127,7 +127,22 @@ public class BoardListPanel extends JPanel implements ActionListener,MouseListen
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==table)
+		{
+		   if(e.getClickCount()==2)
+		   {
+			 int row=table.getSelectedRow();
+			 String no=table.getValueAt(row, 0).toString();
+			 BoardVO vo=bm.boardDetailData(Integer.parseInt(no));
+			 cp.bdp.noLa.setText(String.valueOf(vo.getNo()));
+			 cp.bdp.nameLa.setText(vo.getName());
+			 cp.bdp.subLa.setText(vo.getSubject());
+			 cp.bdp.pane.setText(vo.getContent());
+			 cp.bdp.dateLa.setText(new SimpleDateFormat("yyyy-MM-dd").format(vo.getRegdate()));
+			 cp.bdp.hitLa.setText(String.valueOf(vo.getHit()));
+			 cp.card.show(cp, "bdp");// 상세보기화면 변경
+		   }
+		}
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
